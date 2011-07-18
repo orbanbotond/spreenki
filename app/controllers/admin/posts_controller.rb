@@ -1,4 +1,4 @@
-class Admin::PostsController < Admin::BaseController
+class Admin::PostsController < Admin::Enki::BaseController
   before_filter :find_post, :only => [:show, :update, :destroy]
 
   def index

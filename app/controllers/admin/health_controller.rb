@@ -1,4 +1,4 @@
-class Admin::HealthController < Admin::BaseController
+class Admin::HealthController < Admin::Enki::BaseController
   before_filter :require_login
   verify :method => 'post',
          :only   => 'generate_exception',

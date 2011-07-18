@@ -1,4 +1,4 @@
-class Admin::CommentsController < Admin::BaseController
+class Admin::CommentsController < Admin::Enki::BaseController
   before_filter :find_comment, :only => [:show, :update, :destroy]
 
   def index

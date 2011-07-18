@@ -1,4 +1,4 @@
-class Admin::UndoItemsController < Admin::BaseController
+class Admin::UndoItemsController < Admin::Enki::BaseController
   def index
     @undo_items = UndoItem.find(:all,
       :order => 'created_at DESC',

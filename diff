@@ -1,0 +1,81 @@
+diff --git a/app/controllers/admin/base_controller.rb b/app/controllers/admin/base_controller.rb
+deleted file mode 100644
+index 0abec53..0000000
+--- a/app/controllers/admin/base_controller.rb
++++ /dev/null
+@@ -1,15 +0,0 @@
+-class Admin::BaseController < ApplicationController
+-  layout 'admin'
+-
+-  before_filter :require_login
+-
+-  protected
+-
+-  def require_login
+-    return redirect_to(admin_session_path) unless session[:logged_in]
+-  end
+-
+-  def set_content_type
+-    headers['Content-Type'] ||= 'text/html; charset=utf-8'
+-  end
+-end
+diff --git a/app/controllers/admin/comments_controller.rb b/app/controllers/admin/comments_controller.rb
+index 7da3a95..630bf0c 100644
+--- a/app/controllers/admin/comments_controller.rb
++++ b/app/controllers/admin/comments_controller.rb
+@@ -1,4 +1,4 @@
+-class Admin::CommentsController < Admin::BaseController
++class Admin::CommentsController < Admin::Enki::BaseController
+   before_filter :find_comment, :only => [:show, :update, :destroy]
+ 
+   def index
+diff --git a/app/controllers/admin/dashboard_controller.rb b/app/controllers/admin/dashboard_controller.rb
+index 8d6c0d5..6155e75 100644
+--- a/app/controllers/admin/dashboard_controller.rb
++++ b/app/controllers/admin/dashboard_controller.rb
+@@ -1,4 +1,4 @@
+-class Admin::DashboardController < Admin::BaseController
++class Admin::DashboardController < Admin::Enki::BaseController
+   def show
+     @posts            = Post.find_recent(:limit => 8)
+     @comment_activity = CommentActivity.find_recent
+diff --git a/app/controllers/admin/health_controller.rb b/app/controllers/admin/health_controller.rb
+index 7f741f6..42304e0 100644
+--- a/app/controllers/admin/health_controller.rb
++++ b/app/controllers/admin/health_controller.rb
+@@ -1,4 +1,4 @@
+-class Admin::HealthController < Admin::BaseController
++class Admin::HealthController < Admin::Enki::BaseController
+   before_filter :require_login
+   verify :method => 'post',
+          :only   => 'generate_exception',
+diff --git a/app/controllers/admin/pages_controller.rb b/app/controllers/admin/pages_controller.rb
+index dd58b58..e233510 100644
+--- a/app/controllers/admin/pages_controller.rb
++++ b/app/controllers/admin/pages_controller.rb
+@@ -1,4 +1,4 @@
+-class Admin::PagesController < Admin::BaseController
++class Admin::PagesController < Admin::Enki::BaseController
+   before_filter :find_page, :only => [:show, :update, :destroy]
+ 
+   def index
+diff --git a/app/controllers/admin/posts_controller.rb b/app/controllers/admin/posts_controller.rb
+index cef74ec..eca05c6 100644
+--- a/app/controllers/admin/posts_controller.rb
++++ b/app/controllers/admin/posts_controller.rb
+@@ -1,4 +1,4 @@
+-class Admin::PostsController < Admin::BaseController
++class Admin::PostsController < Admin::Enki::BaseController
+   before_filter :find_post, :only => [:show, :update, :destroy]
+ 
+   def index
+diff --git a/app/controllers/admin/undo_items_controller.rb b/app/controllers/admin/undo_items_controller.rb
+index f4c55c3..7ee4ed4 100644
+--- a/app/controllers/admin/undo_items_controller.rb
++++ b/app/controllers/admin/undo_items_controller.rb
+@@ -1,4 +1,4 @@
+-class Admin::UndoItemsController < Admin::BaseController
++class Admin::UndoItemsController < Admin::Enki::BaseController
+   def index
+     @undo_items = UndoItem.find(:all,
+       :order => 'created_at DESC',

@@ -1,4 +1,4 @@
-class Admin::PagesController < Admin::BaseController
+class Admin::PagesController < Admin::Enki::BaseController
   before_filter :find_page, :only => [:show, :update, :destroy]
 
   def index
