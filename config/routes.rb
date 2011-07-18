@@ -26,14 +26,12 @@ Enki::Application.routes.draw do
   end
 
   scope :to => 'posts#index' do
-    get 'posts.:format', :as => :formatted_posts
-    get '(:tag)', :as => :posts, :tag => /[^admin]/
+    get 'format/posts.:format', :as => :formatted_posts
+    # get 'tags/(:tag)', :as => :posts
+    get 'tags/(:tag)(.:format)', :as => :posts
   end
-  
   
   root :to => 'posts#index'
 
-
   match "shop" => 'products#index'
-  
 end

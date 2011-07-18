@@ -52,7 +52,7 @@ shared_examples_for "logged in and redirected to /admin" do
   end
   it "should redirect to admin posts" do
     response.should be_redirect
-    response.should redirect_to('/admin')
+    response.should redirect_to('/admin/blog')
   end
 end
 shared_examples_for "not logged in" do

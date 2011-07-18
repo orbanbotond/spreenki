@@ -32,6 +32,7 @@ gem 'spree'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'autotest-standalone'
   gem 'cucumber-rails'
   gem 'webrat'
   gem 'factory_girl'
